@@ -183,6 +183,7 @@ export AVRSimple
 export AVRTypeI
 export AVRTypeII
 export IEEET1
+export IEEEX1
 export ESDC1A
 export ESDC2A
 export ESAC1A
