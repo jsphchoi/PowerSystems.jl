@@ -161,18 +161,15 @@ function correct_rate_limits!(branch::Union{Line, MonitoredLine}, basemva::Float
 end
 
 function check_endpoint_voltages(line::Union{Line, MonitoredLine})
-    is_valid = true
     arc = get_arc(line)
     from_voltage = get_base_voltage(get_from(arc))
     to_voltage = get_base_voltage(get_to(arc))
     percent_difference = abs(from_voltage - to_voltage) / ((from_voltage + to_voltage) / 2)
     if percent_difference > BRANCH_BUS_VOLTAGE_DIFFERENCE_TOL
-        is_valid = false
-        @error "Voltage endpoints of $(get_name(line)) have more than $(BRANCH_BUS_VOLTAGE_DIFFERENCE_TOL*100)% difference, cannot create Line. /
-        Check if the data corresponds to transformer data."
+        @warn "Voltage endpoints of $(get_name(line)) have more than $(BRANCH_BUS_VOLTAGE_DIFFERENCE_TOL*100)% difference."
     end
 
-    return is_valid
+    return true
 end
 
 const TYPICAL_XFRM_REACTANCE = (min = 0.05, max = 0.2) # per-unit

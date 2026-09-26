@@ -18,7 +18,6 @@ function PowerModelsData(file::Union{String, IO}; kwargs...)
         correct_branch_rating = correct_branch_rating,
     )
     pm_data = PowerModelsData(pm_dict)
-    correct_pm_transformer_status!(pm_data)
     return pm_data
 end
 
@@ -82,26 +81,6 @@ function System(pm_data::PowerModelsData; kwargs...)
     add_geographic_info_to_buses!(sys, substation_data)
 
     return sys
-end
-
-function correct_pm_transformer_status!(pm_data::PowerModelsData)
-    for (k, branch) in pm_data.data["branch"]
-        f_bus_bvolt = pm_data.data["bus"][branch["f_bus"]]["base_kv"]
-        t_bus_bvolt = pm_data.data["bus"][branch["t_bus"]]["base_kv"]
-        percent_difference =
-            abs(f_bus_bvolt - t_bus_bvolt) / ((f_bus_bvolt + t_bus_bvolt) / 2)
-        if !branch["transformer"] &&
-           percent_difference > BRANCH_BUS_VOLTAGE_DIFFERENCE_TOL
-            branch["transformer"] = true
-            branch["base_power"] = pm_data.data["baseMVA"]
-            branch["ext"] = Dict{String, Any}()
-            @warn "Branch $(branch["f_bus"]) - $(branch["t_bus"]) has different voltage levels endpoints (from: $(f_bus_bvolt)kV, to: $(t_bus_bvolt)kV) which exceed the $(BRANCH_BUS_VOLTAGE_DIFFERENCE_TOL*100)% threshold; converting to transformer."
-            if !haskey(branch, "base_voltage_from")
-                branch["base_voltage_from"] = f_bus_bvolt
-                branch["base_voltage_to"] = t_bus_bvolt
-            end
-        end
-    end
 end
 
 """
