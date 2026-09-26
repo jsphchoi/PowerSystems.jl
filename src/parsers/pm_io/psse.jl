@@ -455,6 +455,31 @@ function _psse2pm_generator!(pm_data::Dict, pti_data::Dict, import_all::Bool)
     end
 end
 
+# TODO (REVIEW) Sets the voltage of PV and slack buses to the generator setpoint VS.
+function _correct_pv_bus_vm!(pm_data::Dict)
+    corrected_pv_bus_vm = Dict{Int, Float64}()
+    for gen in pm_data["gen"]
+        gen_bus = gen["gen_bus"]
+        bus = pm_data["bus"][gen_bus]
+        if !gen["gen_status"] || bus["bus_type"] ∉ (2, 3) ||
+           get(gen["ext"], "IREG", 0) ∉ (0, gen_bus)
+            continue
+        end
+        if haskey(corrected_pv_bus_vm, gen_bus)
+            if corrected_pv_bus_vm[gen_bus] != gen["vg"]
+                @error "Generator voltage set-points for bus $(gen_bus) are inconsistent. This can lead to unexpected results"
+            end
+        else
+            if bus["vm"] != gen["vg"]
+                @info "Correcting vm in bus $(gen_bus) to $(gen["vg"]) to match generator set-point"
+            end
+            bus["vm"] = gen["vg"]
+            corrected_pv_bus_vm[gen_bus] = gen["vg"]
+        end
+    end
+    return
+end
+
 function _psse2pm_area_interchange!(pm_data::Dict, pti_data::Dict, import_all::Bool)
     @info "Parsing PSS(R)E AreaInterchange data into a PowerModels Dict..."
     pm_data["area_interchange"] = []
@@ -2372,6 +2397,8 @@ function _pti_to_powermodels!(
             end
         end
     end
+
+    _correct_pv_bus_vm!(pm_data)
 
     if import_all
         _import_remaining_comps!(
