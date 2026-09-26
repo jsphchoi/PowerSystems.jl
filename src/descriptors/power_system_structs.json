@@ -11785,6 +11785,129 @@
             "supertype": "AVR"
         },
         {
+            "struct_name": "EXAC4",
+            "docstring": "IEEE Type AC4 Excitation System. This model corresponds to EXAC4 in PSSE",
+            "fields": [
+                {
+                    "name": "Tr",
+                    "comment": "Voltage Measurement Time Constant in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "Vi_lim",
+                    "comment": "Voltage input limits (Vi_min, Vi_max)",
+                    "null_value": "(min=0.0, max=0.0)",
+                    "data_type": "MinMax"
+                },
+                {
+                    "name": "Tc",
+                    "comment": "Numerator lead-lag (lead) time constant in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "Tb",
+                    "comment": "Denominator lead-lag (lag) time constant in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "Ka",
+                    "comment": "Amplifier Gain",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "Ta",
+                    "comment": "Amplifier Time Constant in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "Vr_lim",
+                    "comment": "Voltage regulator limits (regulator output) (Vr_min, Vr_max)",
+                    "null_value": "(min=0.0, max=0.0)",
+                    "data_type": "MinMax"
+                },
+                {
+                    "name": "Kc",
+                    "comment": "Current field constant limiter multiplier",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    }
+                },
+                {
+                    "name": "V_ref",
+                    "comment": "Reference Voltage Set-point (pu)",
+                    "null_value": 0,
+                    "default": "1.0",
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    }
+                },
+                {
+                    "name": "ext",
+                    "comment": "An [*ext*ra dictionary](@ref additional_fields) for users to add metadata that are not used in simulation.",
+                    "data_type": "Dict{String, Any}",
+                    "null_value": "Dict{String, Any}()",
+                    "default": "Dict{String, Any}()"
+                },
+                {
+                    "name": "states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) The [states](@ref S) are:\n\tVm: Sensed Terminal Voltage,\n\tVrll: Lead-Lag state,\n\tVr: Regulator Output",
+                    "internal_default": "[:Vm, :Vrll, :Vr]",
+                    "data_type": "Vector{Symbol}"
+                },
+                {
+                    "name": "n_states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) The EXAC4 has 3 states",
+                    "internal_default": 3,
+                    "data_type": "Int"
+                },
+                {
+                    "name": "internal",
+                    "comment": "(**Do not modify.**) PowerSystems.jl internal reference",
+                    "data_type": "InfrastructureSystemsInternal",
+                    "internal_default": "InfrastructureSystemsInternal()",
+                    "exclude_setter": true
+                }
+            ],
+            "supertype": "AVR"
+        },
+        {
             "struct_name": "EX4VSA",
             "docstring": "IEEE Excitation System for Voltage Security Assesment",
             "fields": [
@@ -17036,6 +17159,163 @@
                     "name": "states_types",
                     "comment": "(**Do not modify.**) IEEEG1 has 6 [differential](@ref StateTypes) [states](@ref S)",
                     "internal_default": "[StateTypes.Differential, StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid]",
+                    "data_type": "Vector{StateTypes}"
+                },
+                {
+                    "name": "internal",
+                    "comment": "(**Do not modify.**) PowerSystems.jl internal reference",
+                    "data_type": "InfrastructureSystemsInternal",
+                    "internal_default": "InfrastructureSystemsInternal()",
+                    "exclude_setter": true
+                }
+            ],
+            "supertype": "TurbineGov"
+        },
+        {
+            "struct_name": "IEESGO",
+            "docstring": "IEEE Standard Model for Turbine-Governor. This model corresponds to IEESGO in PSSE",
+            "fields": [
+                {
+                    "name": "T1",
+                    "comment": "Controller lag in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "T2",
+                    "comment": "Controller lead compensation in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "T3",
+                    "comment": "Governor lag in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "T4",
+                    "comment": "Steam inlet delay in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "T5",
+                    "comment": "Reheater delay in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "T6",
+                    "comment": "Crossover delay in s",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "K1",
+                    "comment": "Regulation gain (1/R)",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "K2",
+                    "comment": "Fraction of power after the reheater",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": 1
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "K3",
+                    "comment": "Fraction of power after the crossover",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": 1
+                    },
+                    "validation_action": "warn"
+                },
+                {
+                    "name": "P_lim",
+                    "comment": "Power limits (P_min, P_max)",
+                    "null_value": "(min=0.0, max=0.0)",
+                    "data_type": "MinMax"
+                },
+                {
+                    "name": "P_ref",
+                    "comment": "Reference Power Set-point (pu)",
+                    "null_value": 0,
+                    "default": "1.0",
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    }
+                },
+                {
+                    "name": "ext",
+                    "comment": "An [*ext*ra dictionary](@ref additional_fields) for users to add metadata that are not used in simulation.",
+                    "data_type": "Dict{String, Any}",
+                    "null_value": "Dict{String, Any}()",
+                    "default": "Dict{String, Any}()"
+                },
+                {
+                    "name": "states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) The [states](@ref S) of the IEESGO model are:\n\tx_g1: Controller lag state,\n\tx_g2: Lead-lag state,\n\tx_g3: Steam inlet state,\n\tx_g4: Reheater state,\n\tx_g5: Crossover state",
+                    "internal_default": "[:x_g1, :x_g2, :x_g3, :x_g4, :x_g5]",
+                    "data_type": "Vector{Symbol}"
+                },
+                {
+                    "name": "n_states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) IEESGO has 5 states",
+                    "internal_default": 5,
+                    "data_type": "Int"
+                },
+                {
+                    "name": "states_types",
+                    "comment": "(**Do not modify.**) IEESGO has 5 [states](@ref S)",
+                    "internal_default": "[StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid, StateTypes.Hybrid]",
                     "data_type": "Vector{StateTypes}"
                 },
                 {

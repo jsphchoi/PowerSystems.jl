@@ -192,6 +192,7 @@ export ESAC8B
 export EXAC1
 export EXAC1A
 export EXAC2
+export EXAC4
 export EXPIC1
 export ESST1A
 export ESST4B
@@ -243,6 +244,7 @@ export GasTG
 export GeneralGovModel
 export HydroTurbineGov
 export IEEETurbineGov1
+export IEESGO
 export SteamTurbineGov1
 export DEGOV
 export DEGOV1
