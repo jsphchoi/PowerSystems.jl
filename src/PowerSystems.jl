@@ -174,6 +174,7 @@ export AggregateDistributedGenerationA
 export SingleCageInductionMachine
 export SimplifiedSingleCageInductionMachine
 export ActiveConstantPowerLoad
+export DataCenterLoad
 export DynamicExponentialLoad
 
 #AVR Exports

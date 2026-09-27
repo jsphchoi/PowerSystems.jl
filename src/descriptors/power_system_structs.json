@@ -5126,6 +5126,380 @@
             "supertype": "DynamicInjection"
         },
         {
+            "struct_name": "DataCenterLoad",
+            "docstring": "Parameters of 21-[states](@ref S) data center load based on the paper, [\"Dynamic Modeling of Data-Center Power Delivery for Power System Resonance Analysis.\"](https://arxiv.org/abs/2604.06624): AFE rectifier, UPS DC link, VSI, PSU array, and downstream DC-DC converter with load equivalent",
+            "fields": [
+                {
+                    "null_value": "init",
+                    "name": "name",
+                    "comment": "Name of the component. Components of the same type (e.g., `PowerLoad`) must have unique names, but components of different types (e.g., `PowerLoad` and `ACBus`) can have the same name",
+                    "exclude_setter": true,
+                    "data_type": "String"
+                },
+                {
+                    "name": "ω_lp",
+                    "comment": "PLL low-pass filter cutoff frequency (rad/s)",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "628.3185307179587"
+                },
+                {
+                    "name": "kp_pll",
+                    "comment": "Proportional gain of the PLL",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.4713333333333334"
+                },
+                {
+                    "name": "ki_pll",
+                    "comment": "Integral gain of the PLL",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "41.88790204786391"
+                },
+                {
+                    "name": "r_afe",
+                    "comment": "AFE filter resistance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.003"
+                },
+                {
+                    "name": "l_afe",
+                    "comment": "AFE filter inductance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.05"
+                },
+                {
+                    "name": "kp_dc_afe",
+                    "comment": "Proportional gain of the AFE DC-voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.33333333333333337"
+                },
+                {
+                    "name": "ki_dc_afe",
+                    "comment": "Integral gain of the AFE DC-voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "5.235987755982989"
+                },
+                {
+                    "name": "kp_c_afe",
+                    "comment": "Proportional gain of the AFE current control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.2326666666666667"
+                },
+                {
+                    "name": "ki_c_afe",
+                    "comment": "Integral gain of the AFE current control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "209.43951023931962"
+                },
+                {
+                    "name": "c_dc",
+                    "comment": "UPS DC-link capacitance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "2.0"
+                },
+                {
+                    "name": "r_vsi",
+                    "comment": "VSI filter resistance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.003"
+                },
+                {
+                    "name": "l_vsi",
+                    "comment": "VSI filter inductance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.05"
+                },
+                {
+                    "name": "c_vsi",
+                    "comment": "VSI filter capacitance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.2"
+                },
+                {
+                    "name": "v_vsi_ref",
+                    "comment": "VSI AC-voltage reference",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "1.0"
+                },
+                {
+                    "name": "kp_v_vsi",
+                    "comment": "Proportional gain of the VSI voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.6666666666666667"
+                },
+                {
+                    "name": "ki_v_vsi",
+                    "comment": "Integral gain of the VSI voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "209.43951023931962"
+                },
+                {
+                    "name": "kp_c_vsi",
+                    "comment": "Proportional gain of the VSI current control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.6636666666666667"
+                },
+                {
+                    "name": "ki_c_vsi",
+                    "comment": "Integral gain of the VSI current control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "837.7580409572785"
+                },
+                {
+                    "name": "c_psu",
+                    "comment": "PSU DC-port capacitance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "2.0"
+                },
+                {
+                    "name": "r_psu",
+                    "comment": "PSU equivalent resistance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.005"
+                },
+                {
+                    "name": "v_psu_ref",
+                    "comment": "PSU DC-voltage reference",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "1.0"
+                },
+                {
+                    "name": "kp_v_psu",
+                    "comment": "Proportional gain of the PSU voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.6666666666666667"
+                },
+                {
+                    "name": "ki_v_psu",
+                    "comment": "Integral gain of the PSU voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "20.943951023931955"
+                },
+                {
+                    "name": "c_eq",
+                    "comment": "Load-side equivalent capacitance",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.2"
+                },
+                {
+                    "name": "v_eq_ref",
+                    "comment": "Load-side DC-voltage reference",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.5"
+                },
+                {
+                    "name": "kp_v_eq",
+                    "comment": "Proportional gain of the load-side voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "0.6666666666666667"
+                },
+                {
+                    "name": "ki_v_eq",
+                    "comment": "Integral gain of the load-side voltage control",
+                    "null_value": 0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0,
+                        "max": null
+                    },
+                    "default": "209.43951023931962"
+                },
+                {
+                    "name": "base_power",
+                    "comment": "Base power of the unit (MVA) for [per unitization](@ref per_unit)",
+                    "null_value": 100.0,
+                    "data_type": "Float64",
+                    "valid_range": {
+                        "min": 0.0001,
+                        "max": null
+                    },
+                    "default": "100.0"
+                },
+                {
+                    "name": "ext",
+                    "comment": "An [*ext*ra dictionary](@ref additional_fields) for users to add metadata that are not used in simulation.",
+                    "data_type": "Dict{String, Any}",
+                    "null_value": "Dict{String, Any}()",
+                    "default": "Dict{String, Any}()"
+                },
+                {
+                    "name": "P_ref",
+                    "comment": "Server load demand p_load (pu)",
+                    "internal_default": "0.5",
+                    "data_type": "Float64"
+                },
+                {
+                    "name": "Q_ref",
+                    "comment": "AFE q-axis current reference (pu)",
+                    "internal_default": "0.0",
+                    "data_type": "Float64"
+                },
+                {
+                    "name": "V_ref",
+                    "comment": "UPS DC-link voltage reference (pu)",
+                    "internal_default": "1.0",
+                    "data_type": "Float64"
+                },
+                {
+                    "name": "ω_ref",
+                    "comment": "Reference frequency (pu)",
+                    "internal_default": "1.0",
+                    "data_type": "Float64"
+                },
+                {
+                    "name": "states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) The [states](@ref S) are:\n\tθ_pll: PLL angle,\n\tϵ_pll: PLL integrator state,\n\tvq_pll: PLL filtered q-axis voltage,\n\tid_afe: AFE d-axis current,\n\tiq_afe: AFE q-axis current,\n\tξ_dc_afe: AFE DC-voltage control integrator state,\n\tγd_afe: AFE d-axis current control integrator state,\n\tγq_afe: AFE q-axis current control integrator state,\n\tv_dc: UPS DC-link voltage,\n\tiu_cv: VSI u-axis converter current,\n\tiv_cv: VSI v-axis converter current,\n\tvu_vsi: VSI u-axis capacitor voltage,\n\tvv_vsi: VSI v-axis capacitor voltage,\n\tξu_vsi: VSI u-axis voltage control integrator state,\n\tξv_vsi: VSI v-axis voltage control integrator state,\n\tγu_vsi: VSI u-axis current control integrator state,\n\tγv_vsi: VSI v-axis current control integrator state,\n\tv_psu: PSU DC-port voltage,\n\tξ_psu: PSU voltage control integrator state,\n\tv_eq: Load-side DC voltage,\n\tξ_eq: Load-side voltage control integrator state",
+                    "internal_default": "[:θ_pll, :ϵ_pll, :vq_pll, :id_afe, :iq_afe, :ξ_dc_afe, :γd_afe, :γq_afe, :v_dc, :iu_cv, :iv_cv, :vu_vsi, :vv_vsi, :ξu_vsi, :ξv_vsi, :γu_vsi, :γv_vsi, :v_psu, :ξ_psu, :v_eq, :ξ_eq]",
+                    "data_type": "Vector{Symbol}"
+                },
+                {
+                    "name": "n_states",
+                    "exclude_setter": true,
+                    "comment": "(**Do not modify.**) DataCenterLoad has 21 states",
+                    "internal_default": 21,
+                    "data_type": "Int"
+                },
+                {
+                    "name": "internal",
+                    "comment": "(**Do not modify.**) PowerSystems.jl internal reference",
+                    "data_type": "InfrastructureSystemsInternal",
+                    "internal_default": "InfrastructureSystemsInternal()",
+                    "exclude_setter": true
+                }
+            ],
+            "supertype": "DynamicInjection"
+        },
+        {
             "struct_name": "InterconnectingConverter",
             "docstring": "Interconnecting Power Converter (IPC) for transforming power from an [`ACBus`](@ref) to a [`DCBus`](@ref)",
             "fields": [

@@ -32,6 +32,7 @@ include("SingleCageInductionMachine.jl")
 include("SimplifiedSingleCageInductionMachine.jl")
 include("DynamicExponentialLoad.jl")
 include("ActiveConstantPowerLoad.jl")
+include("DataCenterLoad.jl")
 include("InterconnectingConverter.jl")
 include("CSVGN1.jl")
 include("HydroDispatch.jl")
@@ -528,6 +529,9 @@ export get_bus_control
 export get_bustype
 export get_c
 export get_c_dc
+export get_c_eq
+export get_c_psu
+export get_c_vsi
 export get_cf
 export get_compounding_resistance
 export get_conformity
@@ -634,11 +638,23 @@ export get_kad
 export get_kd
 export get_kffi
 export get_kffv
+export get_ki_c_afe
+export get_ki_c_vsi
+export get_ki_dc_afe
 export get_ki_pll
+export get_ki_v_eq
+export get_ki_v_psu
+export get_ki_v_vsi
 export get_kic
 export get_kii
 export get_kiv
+export get_kp_c_afe
+export get_kp_c_vsi
+export get_kp_dc_afe
 export get_kp_pll
+export get_kp_v_eq
+export get_kp_v_psu
+export get_kp_v_vsi
 export get_kpc
 export get_kpi
 export get_kpv
@@ -646,6 +662,8 @@ export get_kq
 export get_kw
 export get_kω
 export get_l
+export get_l_afe
+export get_l_vsi
 export get_level_data_type
 export get_level_targets
 export get_lf
@@ -705,10 +723,13 @@ export get_r
 export get_r_12
 export get_r_13
 export get_r_23
+export get_r_afe
 export get_r_load
 export get_r_primary
+export get_r_psu
 export get_r_secondary
 export get_r_tertiary
+export get_r_vsi
 export get_ramp_limits
 export get_rated_current
 export get_rated_dc_voltage
@@ -802,6 +823,9 @@ export get_travel_time
 export get_turbine_type
 export get_upstream_reservoirs
 export get_upstream_turbines
+export get_v_eq_ref
+export get_v_psu_ref
+export get_v_vsi_ref
 export get_valve_position_limits
 export get_variable
 export get_vh_pnts
@@ -1230,6 +1254,9 @@ export set_bus_control!
 export set_bustype!
 export set_c!
 export set_c_dc!
+export set_c_eq!
+export set_c_psu!
+export set_c_vsi!
 export set_cf!
 export set_compounding_resistance!
 export set_conformity!
@@ -1336,11 +1363,23 @@ export set_kad!
 export set_kd!
 export set_kffi!
 export set_kffv!
+export set_ki_c_afe!
+export set_ki_c_vsi!
+export set_ki_dc_afe!
 export set_ki_pll!
+export set_ki_v_eq!
+export set_ki_v_psu!
+export set_ki_v_vsi!
 export set_kic!
 export set_kii!
 export set_kiv!
+export set_kp_c_afe!
+export set_kp_c_vsi!
+export set_kp_dc_afe!
 export set_kp_pll!
+export set_kp_v_eq!
+export set_kp_v_psu!
+export set_kp_v_vsi!
 export set_kpc!
 export set_kpi!
 export set_kpv!
@@ -1348,6 +1387,8 @@ export set_kq!
 export set_kw!
 export set_kω!
 export set_l!
+export set_l_afe!
+export set_l_vsi!
 export set_level_data_type!
 export set_level_targets!
 export set_lf!
@@ -1407,10 +1448,13 @@ export set_r!
 export set_r_12!
 export set_r_13!
 export set_r_23!
+export set_r_afe!
 export set_r_load!
 export set_r_primary!
+export set_r_psu!
 export set_r_secondary!
 export set_r_tertiary!
+export set_r_vsi!
 export set_ramp_limits!
 export set_rated_current!
 export set_rated_dc_voltage!
@@ -1504,6 +1548,9 @@ export set_travel_time!
 export set_turbine_type!
 export set_upstream_reservoirs!
 export set_upstream_turbines!
+export set_v_eq_ref!
+export set_v_psu_ref!
+export set_v_vsi_ref!
 export set_valve_position_limits!
 export set_variable!
 export set_vh_pnts!
