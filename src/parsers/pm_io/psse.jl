@@ -455,7 +455,7 @@ function _psse2pm_generator!(pm_data::Dict, pti_data::Dict, import_all::Bool)
     end
 end
 
-# TODO (REVIEW) Sets the voltage of PV and slack buses to the generator setpoint VS.
+# Sets the voltage of PV and slack buses to the generator setpoint VS.
 function _correct_pv_bus_vm!(pm_data::Dict)
     corrected_pv_bus_vm = Dict{Int, Float64}()
     for gen in pm_data["gen"]
